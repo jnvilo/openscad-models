@@ -2,6 +2,8 @@ use <yellow_motor.scad>;
 
 
 module motor(){
+//translate([0,0.6,0])
+rotate([180,0,0])
 color("blue") yellow_motor();
 }
 
@@ -24,7 +26,7 @@ module body(){
 
     translate([0,-side,0])
     cube([l,w,h],center=true);
-
+ 
     translate([l/2-w/2,0,0])
     cube([w,19,h],center=true);
     translate([-(l/2-w/2),0,0])
@@ -58,15 +60,17 @@ module motor_shaft_cutter(){
   
   
   //let notch for protruding round 
-   translate([-11.5,0,-11]) {
+   translate([-11.5,-10,-11]) {
         color("red") 
-        cube([6,102,20],center=true);
+        cube([6,20,20],center=true);
    }
 
-  translate([-11.5,0,-1]){
-        rotate([90,0,0]) cylinder(r=3,h=100,center=true,$fn=32);
+  translate([-11.5,-10,-1]){
+        rotate([90,0,0]) cylinder(r=3,h=20,center=true,$fn=32);
        }
     
+       
+    //for motor square notch
     translate([-32,0,-6])
     cube([6,30,20],center=true);
 
