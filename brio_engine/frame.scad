@@ -10,7 +10,7 @@ color("blue") yellow_motor();
 
 
 
-l=90;
+l=80;
 h=22;
 w = 1.5;
 
@@ -39,11 +39,11 @@ module motor_shaft_cutter(){
 
     translate([0,0,-10]) {
         color("red") 
-        cube([6,102,20],center=true);
+        cube([8,102,20],center=true);
     }
 
     difference(){    
-     {rotate([90,0,0]) cylinder(r=3,h=100,center=true,$fn=32);}
+     {rotate([90,0,0]) cylinder(r=5,h=100,center=true,$fn=32);}
 
     /*
     translate([3.5/2+1.5,0,0]) {
@@ -60,12 +60,12 @@ module motor_shaft_cutter(){
   
   
   //let notch for protruding round 
-   translate([-11.5,-10,-11]) {
+   translate([-12,-10,-11]) {
         color("red") 
         cube([6,20,20],center=true);
    }
 
-  translate([-11.5,-10,-1]){
+  translate([-12,-10,-1]){
         rotate([90,0,0]) cylinder(r=3,h=20,center=true,$fn=32);
        }
     
@@ -80,16 +80,20 @@ module motor_shaft_cutter(){
 motor_disp = l/2-20;  //the amount to move motor to the +x
 cutter_disp = l/2-20 +7.6; //the amount to move cutter relative to motor
 
-translate([motor_disp,0,0]) motor();
+//translate([motor_disp-0.5,0,0]) motor();
 
 
-difference(){
-body();
+module frame(){
+    difference(){
+    body();
 
-translate([cutter_disp,0,0])motor_shaft_cutter();
-translate([-(l/2-10),0,0]){
-rotate([90,0,0]) cylinder(r=2.1,h=100,center=true,$fn=32);
+    translate([cutter_disp,0,0])motor_shaft_cutter();
+    translate([-(l/2-10),0,0]){
+    rotate([90,0,0]) cylinder(r=2.1,h=100,center=true,$fn=32);
+    }
+
+    }
+
 }
 
-}
-
+rotate([180,0,0]) frame();
